@@ -2,6 +2,8 @@
 
 Servidor que disponibiliza un API REST para la compra de productos en línea.
 
+[API REST](https://api-bsale-server.herokuapp.com/api/v1/products)
+
 ## Tecnologías
 ---
 *  [Node.js](https://nodejs.org/) - Lenguaje de programación
