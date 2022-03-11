@@ -14,7 +14,7 @@ Servidor que disponibiliza un API REST para la compra de productos en línea.
 
 
 ## Requisitos de Instalación
----
+
 Es necesario tener instalado [Node.js](https://nodejs.org/en/).
 
 ### Desarrollo
