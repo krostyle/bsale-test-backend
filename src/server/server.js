@@ -21,7 +21,7 @@ const paths = {
 const app = express();
 
 //Settings
-app.set('port', configurations.PORT || 300);
+app.set('port', configurations.PORT || 3000);
 
 //Middlewares
 app.use(morgan('tiny'));
