@@ -26,7 +26,7 @@ var paths = {
 
 var app = (0, _express["default"])(); //Settings
 
-app.set('port', _config["default"].PORT || 300); //Middlewares
+app.set('port', _config["default"].PORT || 3000); //Middlewares
 
 app.use((0, _morgan["default"])('tiny'));
 app.use((0, _cors["default"])());
