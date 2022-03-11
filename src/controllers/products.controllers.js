@@ -18,6 +18,8 @@ const getProducts = async(req, res) => {
             return Object.keys(params).every(key => {
                 if (key === 'name') {
                     return product.name.toLowerCase().includes(params[key].toLowerCase());
+                } else if (key === 'category') {
+                    return product.categories.name.toLowerCase() === params[key].toLowerCase();
                 }
                 return product[key] === params[key];
             });
@@ -60,9 +62,36 @@ const getProduct = async(req, res) => {
     }
 }
 
+//get product by category name
+const getProductsByCategory = async(req, res) => {
+    try {
+        const { limit = 100, offset = 0, order, ...params } = req.query;
+        const products = await Product.findAll({
+            include: [{
+                model: Category,
+                as: "categories",
+                attributes: ["name"]
+            }],
+
+        });
+
+        //filter by category name
+        const productsFiltered = products.filter(product => {
+            return product.categories.some(category => category.name === req.params.category);
+        });
+        return res.json(productsFiltered);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            message: "Error al obtener productos"
+        });
+    }
+}
+
 
 
 export {
     getProducts,
-    getProduct
+    getProduct,
+    getProductsByCategory
 }

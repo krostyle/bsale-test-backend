@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getProducts = exports.getProduct = void 0;
+exports.getProductsByCategory = exports.getProducts = exports.getProduct = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -17,7 +17,8 @@ var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/
 
 var _models = require("../models");
 
-var _excluded = ["limit", "offset", "order"];
+var _excluded = ["limit", "offset", "order"],
+    _excluded2 = ["limit", "offset", "order"];
 
 var getProducts = /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(req, res) {
@@ -45,6 +46,8 @@ var getProducts = /*#__PURE__*/function () {
               return Object.keys(params).every(function (key) {
                 if (key === 'name') {
                   return product.name.toLowerCase().includes(params[key].toLowerCase());
+                } else if (key === 'category') {
+                  return product.categories.name.toLowerCase() === params[key].toLowerCase();
                 }
 
                 return product[key] === params[key];
@@ -129,6 +132,59 @@ var getProduct = /*#__PURE__*/function () {
   return function getProduct(_x3, _x4) {
     return _ref2.apply(this, arguments);
   };
-}();
+}(); //get product by category name
+
 
 exports.getProduct = getProduct;
+
+var getProductsByCategory = /*#__PURE__*/function () {
+  var _ref3 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3(req, res) {
+    var _req$query2, _req$query2$limit, limit, _req$query2$offset, offset, order, params, products, productsFiltered;
+
+    return _regenerator["default"].wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            _context3.prev = 0;
+            _req$query2 = req.query, _req$query2$limit = _req$query2.limit, limit = _req$query2$limit === void 0 ? 100 : _req$query2$limit, _req$query2$offset = _req$query2.offset, offset = _req$query2$offset === void 0 ? 0 : _req$query2$offset, order = _req$query2.order, params = (0, _objectWithoutProperties2["default"])(_req$query2, _excluded2);
+            _context3.next = 4;
+            return _models.Product.findAll({
+              include: [{
+                model: _models.Category,
+                as: "categories",
+                attributes: ["name"]
+              }]
+            });
+
+          case 4:
+            products = _context3.sent;
+            //filter by category name
+            productsFiltered = products.filter(function (product) {
+              return product.categories.some(function (category) {
+                return category.name === req.params.category;
+              });
+            });
+            return _context3.abrupt("return", res.json(productsFiltered));
+
+          case 9:
+            _context3.prev = 9;
+            _context3.t0 = _context3["catch"](0);
+            console.log(_context3.t0);
+            res.status(500).json({
+              message: "Error al obtener productos"
+            });
+
+          case 13:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3, null, [[0, 9]]);
+  }));
+
+  return function getProductsByCategory(_x5, _x6) {
+    return _ref3.apply(this, arguments);
+  };
+}();
+
+exports.getProductsByCategory = getProductsByCategory;

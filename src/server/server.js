@@ -10,10 +10,12 @@ import configurations from '../config/config';
 
 //Routes Imports
 import productsRoutes from '../routes/products.routes';
+import categoriesRoutes from '../routes/categories.routes';
 
 //Paths
 const paths = {
     products: '/api/v1/products',
+    categories: '/api/v1/categories'
 };
 
 
@@ -32,6 +34,7 @@ app.use(express.json());
 //Routes
 
 app.use(paths.products, productsRoutes);
+app.use(paths.categories, categoriesRoutes);
 
 
 

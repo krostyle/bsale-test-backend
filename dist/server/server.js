@@ -17,11 +17,14 @@ var _config = _interopRequireDefault(require("../config/config"));
 
 var _products = _interopRequireDefault(require("../routes/products.routes"));
 
+var _categories = _interopRequireDefault(require("../routes/categories.routes"));
+
 //con babel config
 //Routes Imports
 //Paths
 var paths = {
-  products: '/api/v1/products'
+  products: '/api/v1/products',
+  categories: '/api/v1/categories'
 }; //Initializations
 
 var app = (0, _express["default"])(); //Settings
@@ -36,5 +39,6 @@ app.use(_express["default"].urlencoded({
 app.use(_express["default"].json()); //Routes
 
 app.use(paths.products, _products["default"]);
+app.use(paths.categories, _categories["default"]);
 var _default = app;
 exports["default"] = _default;

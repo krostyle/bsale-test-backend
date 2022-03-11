@@ -7,10 +7,9 @@ exports["default"] = void 0;
 
 var _express = require("express");
 
-var _products = require("../controllers/products.controllers");
+var _categories = require("../controllers/categories.controllers");
 
 var router = (0, _express.Router)();
-router.get("/", _products.getProducts);
-router.get("/:id", _products.getProducts);
+router.get("/", _categories.getCategories);
 var _default = router;
 exports["default"] = _default;
