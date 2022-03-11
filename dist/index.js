@@ -4,7 +4,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 
 var _server = _interopRequireDefault(require("./server/server"));
 
-_server["default"].listen('port', function () {
+_server["default"].listen(_server["default"].get('port'), function () {
   console.log("Server on port ".concat(_server["default"].get("port")));
   console.log("http://localhost:".concat(_server["default"].get("port")));
 });
