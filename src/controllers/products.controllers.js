@@ -3,7 +3,7 @@ import { Category } from "../models";
 
 const getProducts = async(req, res) => {
     try {
-        const { limit = 20, offset = 0, order, ...params } = req.query;
+        const { limit = 100, offset = 0, order, ...params } = req.query;
         const products = await Product.findAll({
             include: [{
                 model: Category,

@@ -28,7 +28,7 @@ var getProducts = /*#__PURE__*/function () {
         switch (_context.prev = _context.next) {
           case 0:
             _context.prev = 0;
-            _req$query = req.query, _req$query$limit = _req$query.limit, limit = _req$query$limit === void 0 ? 20 : _req$query$limit, _req$query$offset = _req$query.offset, offset = _req$query$offset === void 0 ? 0 : _req$query$offset, order = _req$query.order, params = (0, _objectWithoutProperties2["default"])(_req$query, _excluded);
+            _req$query = req.query, _req$query$limit = _req$query.limit, limit = _req$query$limit === void 0 ? 100 : _req$query$limit, _req$query$offset = _req$query.offset, offset = _req$query$offset === void 0 ? 0 : _req$query$offset, order = _req$query.order, params = (0, _objectWithoutProperties2["default"])(_req$query, _excluded);
             _context.next = 4;
             return _models.Product.findAll({
               include: [{
