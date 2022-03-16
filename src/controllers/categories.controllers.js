@@ -1,6 +1,6 @@
 import { Category } from "../models";
 
-
+//Metodo para obtener todas las categorias
 const getCategories = async(req, res) => {
     try {
         const categories = await Category.findAll();

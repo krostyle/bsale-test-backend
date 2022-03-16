@@ -1,7 +1,7 @@
 import { Sequelize } from 'sequelize';
 import configurations from '../config/config';
 
-
+//Configuracion de la conexion
 const sequelize = new Sequelize(
     configurations.DB_NAME,
     configurations.DB_USER,
@@ -19,6 +19,7 @@ const sequelize = new Sequelize(
     }
 );
 
+//Metodo para verificar la conexion
 const connect = async() => {
     try {
         await sequelize.authenticate();
