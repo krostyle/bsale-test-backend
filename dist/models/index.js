@@ -22,6 +22,7 @@ var _Product = _interopRequireDefault(require("./Product"));
 
 var _Categroy = _interopRequireDefault(require("./Categroy"));
 
+//Relaciones entre las tablas
 _Categroy["default"].hasMany(_Product["default"], {
   foreignKey: "category",
   as: "products"

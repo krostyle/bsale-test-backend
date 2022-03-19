@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getCategories = void 0;
+exports.getProductsByCategory = exports.getCategories = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -13,6 +13,7 @@ var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/
 
 var _models = require("../models");
 
+//Metodo para obtener todas las categorias
 var getCategories = /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(req, res) {
     var categories;
@@ -52,3 +53,48 @@ var getCategories = /*#__PURE__*/function () {
 }();
 
 exports.getCategories = getCategories;
+
+var getProductsByCategory = /*#__PURE__*/function () {
+  var _ref2 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(req, res) {
+    var category;
+    return _regenerator["default"].wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.prev = 0;
+            _context2.next = 3;
+            return _models.Category.findByPk(req.params.id, {
+              include: {
+                model: _models.Product,
+                as: "products"
+              }
+            });
+
+          case 3:
+            category = _context2.sent;
+            res.json(category);
+            _context2.next = 11;
+            break;
+
+          case 7:
+            _context2.prev = 7;
+            _context2.t0 = _context2["catch"](0);
+            console.log(_context2.t0);
+            res.status(500).json({
+              message: "Error al obtener categorias"
+            });
+
+          case 11:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[0, 7]]);
+  }));
+
+  return function getProductsByCategory(_x3, _x4) {
+    return _ref2.apply(this, arguments);
+  };
+}();
+
+exports.getProductsByCategory = getProductsByCategory;

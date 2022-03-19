@@ -9,6 +9,8 @@ var _express = require("express");
 
 var _products = require("../controllers/products.controllers");
 
+//Rutas para los productos
+//api/v1/products
 var router = (0, _express.Router)();
 router.get("/", _products.getProducts);
 router.get("/:id", _products.getProducts);

@@ -15,6 +15,7 @@ var _sequelize = require("sequelize");
 
 var _config = _interopRequireDefault(require("../config/config"));
 
+//Configuracion de la conexion
 var sequelize = new _sequelize.Sequelize(_config["default"].DB_NAME, _config["default"].DB_USER, _config["default"].DB_PASSWORD, {
   host: _config["default"].DB_HOST,
   dialect: 'mysql',
@@ -26,7 +27,7 @@ var sequelize = new _sequelize.Sequelize(_config["default"].DB_NAME, _config["de
   },
   logging: false,
   ssl: true
-});
+}); //Metodo para verificar la conexion
 
 var connect = /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee() {
