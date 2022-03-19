@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getProducts, getProduct, getProductsByCategory } from "../controllers/products.controllers";
+import { getProducts, getProduct } from "../controllers/products.controllers";
 
 
 //Rutas para los productos

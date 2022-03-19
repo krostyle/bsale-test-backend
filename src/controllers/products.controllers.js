@@ -1,17 +1,39 @@
+import { Op } from "sequelize";
 import { Product } from "../models";
 import { Category } from "../models";
 
 
+
 const getProducts = async(req, res) => {
     try {
-        const { limit = 100, offset = 0, order, ...params } = req.query;
-        //Es necesario hacer las consultras en la base de datos
-        //pagination
-        const productsPaginated = productsFiltered.slice(offset, offset + limit);
-        const quantity = productsPaginated.length;
+        //Filtro por nombre
+        const options = {};
+        const order = [];
+        if (req.query.name) {
+            options.where = {
+                name: {
+                    [Op.like]: `%${req.query.name}%`
+                }
+            }
+        }
+        //Orden por parametro
+        if (req.query.order) {
+            const [key, value] = req.query.order.split(":");
+            order.push([key, value]);
+        }
+
+        //Paginacion
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 10;
+        const offset = (page - 1) * limit;
+
+        options.limit = limit;
+        options.offset = offset;
+        options.order = order;
+
+        const products = await Product.findAndCountAll(options);
         return res.json({
-            quantity,
-            products: productsPaginated
+            products
         });
     } catch (error) {
         console.log(error);
@@ -42,6 +64,5 @@ const getProduct = async(req, res) => {
 
 export {
     getProducts,
-    getProduct,
-    getProductsByCategory
+    getProduct
 }
