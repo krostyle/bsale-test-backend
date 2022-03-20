@@ -56,7 +56,7 @@ exports.getCategories = getCategories;
 
 var getProductsByCategory = /*#__PURE__*/function () {
   var _ref2 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(req, res) {
-    var category;
+    var category, page, limit, offset;
     return _regenerator["default"].wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
@@ -72,24 +72,25 @@ var getProductsByCategory = /*#__PURE__*/function () {
 
           case 3:
             category = _context2.sent;
-            res.json(category);
-            _context2.next = 11;
-            break;
+            page = parseInt(req.query.page) || 1;
+            limit = parseInt(req.query.limit) || 10;
+            offset = (page - 1) * limit;
+            return _context2.abrupt("return", res.json(category));
 
-          case 7:
-            _context2.prev = 7;
+          case 10:
+            _context2.prev = 10;
             _context2.t0 = _context2["catch"](0);
             console.log(_context2.t0);
             res.status(500).json({
               message: "Error al obtener categorias"
             });
 
-          case 11:
+          case 14:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[0, 7]]);
+    }, _callee2, null, [[0, 10]]);
   }));
 
   return function getProductsByCategory(_x3, _x4) {
