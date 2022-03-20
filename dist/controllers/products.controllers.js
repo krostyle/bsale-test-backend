@@ -57,7 +57,10 @@ var getProducts = /*#__PURE__*/function () {
           case 13:
             products = _context.sent;
             return _context.abrupt("return", res.json({
-              products: products
+              current: page,
+              pages: Math.ceil(products.count / limit),
+              total: products.count,
+              products: products.rows
             }));
 
           case 17:

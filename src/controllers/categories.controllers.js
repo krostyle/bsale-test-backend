@@ -31,7 +31,12 @@ const getProductsByCategory = async(req, res) => {
             },
 
         });
-        return res.json(category);
+        return res.json({
+            current: page,
+            pages: Math.ceil(category.products.length / limit),
+            total: category.products.length,
+            products: category.products
+        });
     } catch (error) {
         console.log(error);
         res.status(500).json({

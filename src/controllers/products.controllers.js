@@ -33,7 +33,10 @@ const getProducts = async(req, res) => {
 
         const products = await Product.findAndCountAll(options);
         return res.json({
-            products
+            current: page,
+            pages: Math.ceil(products.count / limit),
+            total: products.count,
+            products: products.rows
         });
     } catch (error) {
         console.log(error);
