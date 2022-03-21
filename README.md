@@ -58,11 +58,12 @@ De la misma forma, se pueden ordenar los resultados de la consulta, por ejemplo:
 
 Finalmente es posible paginar los resultados de la consulta, por ejemplo:
 
-    [GET] api/v1/products?name=pisco&limit=10&offset=2
-    Retorna 10 productos que contengan la palabra pisco, comenzando en el segundo resultado.
+    [GET] api/v1/products?name=pisco&page=2&limit=2
+    Retorna 2 productos que contengan la palabra pisco, comenzando en la página 2
 
 
-    
+## Documentación Postman
+[Documentación Postman](https://documenter.getpostman.com/view/12226122/UVsQr3PU)
     
 
 
